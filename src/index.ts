@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
@@ -6,9 +6,13 @@ import groceryRouter from "./routes/groceries";
 import marketRouter from "./routes/markets";
 import authRouter from "./routes/auth";
 
+import { connectDb } from './database';
+
 const app = express();
 
 const PORT = 3000;
+
+connectDb();
 
 app.use(express.json());
 app.use(express.urlencoded());
