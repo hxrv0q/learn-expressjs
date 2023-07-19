@@ -10,6 +10,7 @@
           nodejs = prev.nodejs-18_x;
           pnpm = prev.nodePackages.pnpm;
           yarn = (prev.yarn.override { inherit nodejs; });
+          typescript-language-server = prev.nodePackages.typescript-language-server;
         })
       ];
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
@@ -20,7 +21,7 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; [ node2nix nodejs pnpm yarn nodePackages.typescript-language-server ];
+          packages = with pkgs; [ node2nix nodejs pnpm yarn typescript-language-server ];
         };
       });
     };
