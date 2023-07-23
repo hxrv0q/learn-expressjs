@@ -39,9 +39,9 @@ groceryRouter.post("/", (request, response) => {
 });
 
 groceryRouter.get("/shopping/cart/", (request, response) => {
-  const {cart } = request.session;
+  const { cart } = request.session;
   if (!cart) {
-    return response.send('You have not cart session yet.');
+    return response.send("You have not cart session yet.");
   }
 
   return response.send(cart);

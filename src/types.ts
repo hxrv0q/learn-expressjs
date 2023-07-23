@@ -7,6 +7,6 @@ declare module "express-session" {
     };
     user: {
       username: string;
-    }
+    };
   }
 }

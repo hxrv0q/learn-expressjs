@@ -8,7 +8,7 @@ const supermarkets = [
   { id: 3, store: "Safeway", miles: 2.8 },
   { id: 4, store: "Berkeley Bowl", miles: 2.5 },
   { id: 5, store: "Target", miles: 3.5 },
-  { id: 6, store: "Lucky", miles: 1.8 }
+  { id: 6, store: "Lucky", miles: 1.8 },
 ];
 
 marketRouter.get("/", (request, response) => {
@@ -16,7 +16,9 @@ marketRouter.get("/", (request, response) => {
   const parsedMiles = parseFloat(miles as string);
 
   if (parsedMiles) {
-    const nearbyMarkets = supermarkets.filter(supermarket => supermarket.miles <= parsedMiles);
+    const nearbyMarkets = supermarkets.filter(
+      (supermarket) => supermarket.miles <= parsedMiles,
+    );
     return response.send(nearbyMarkets);
   }
 

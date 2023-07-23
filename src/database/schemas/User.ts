@@ -12,8 +12,8 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
   email: { type: String, required: true },
   createdAt: { type: Schema.Types.Date, required: true, default: new Date() },
-})
+});
 
-const User = model<IUser>('User', userSchema);
+const User = model<IUser>("User", userSchema);
 
 export default User;

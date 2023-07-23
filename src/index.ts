@@ -6,7 +6,7 @@ import groceryRouter from "./routes/groceries";
 import marketRouter from "./routes/markets";
 import authRouter from "./routes/auth";
 
-import { connectDb } from './database';
+import { connectDb } from "./database";
 
 const app = express();
 
@@ -16,11 +16,13 @@ connectDb();
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(session({
-  secret: "keyboard cat",
-  resave: false,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 
 app.use(cookieParser());
 
