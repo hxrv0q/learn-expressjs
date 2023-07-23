@@ -24,7 +24,7 @@ app.use(session({
 
 app.use(cookieParser());
 
-app.use((request, response, next) => {
+app.use((request, _response, next) => {
   console.log(`${request.method}:${request.url}`);
   next();
 });
