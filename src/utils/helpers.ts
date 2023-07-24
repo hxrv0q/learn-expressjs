@@ -5,6 +5,6 @@ export function hashPassword(password: string) {
   return hashSync(password, salt);
 }
 
-function comparePassword(rawPassword: string, hashPassword: string) {
+export function comparePassword(rawPassword: string, hashPassword: string) {
   return compareSync(rawPassword, hashPassword);
 }
