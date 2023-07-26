@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, response } from "express";
 
 const groceryRouter = Router();
 
@@ -16,6 +16,11 @@ const groceries = [
     quantity: 12,
   },
 ];
+
+groceryRouter.use((request, response, next) => {
+  if (request.user) return next();
+  return response.status(401).send("Unauthorized");
+});
 
 groceryRouter.get("/", (request, response) => {
   response.send(groceries);
