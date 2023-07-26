@@ -1,25 +1,18 @@
 import { Router } from "express";
 import User from "../database/schemas/User";
 import { comparePassword, hashPassword } from "../utils/helpers";
+import passport from "passport";
 
 const authRouter = Router();
 
-authRouter.post("/login", async (request, response) => {
-  const { email, password } = request.body;
-  if (!email && !password) {
-    return response.status(404);
-  }
 
-  const foundUser = await User.findOne({ email });
-  if (!foundUser) return response.send(401);
-
-  if (comparePassword(password, foundUser?.password)) {
-    request.session.user = foundUser;
+authRouter.post(
+  "/login",
+  passport.authenticate("local"),
+  async (_request, response) => {
     return response.send(200);
-  }
-
-  return response.send(401);
-});
+  },
+);
 
 authRouter.post("/register", async (request, response) => {
   const { username, email } = request.body;
@@ -29,7 +22,7 @@ authRouter.post("/register", async (request, response) => {
   }
 
   const password = hashPassword(request.body.password);
-  const newUser = await User.create({ username, password, email });
+  await User.create({ username, password, email });
 
   return response.send(201);
 });

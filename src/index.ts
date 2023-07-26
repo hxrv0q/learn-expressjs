@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import passport from "passport";
 
 import groceryRouter from "./routes/groceries";
 import marketRouter from "./routes/markets";
@@ -31,15 +32,11 @@ app.use((request, _response, next) => {
   next();
 });
 
-app.use("/api/v1/auth", authRouter);
-
-app.use((request, response, next) => {
-  if (request.session.user) return next();
-
-  return response.status(401).send("You must be logged in to do that.");
-});
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/api/v1/groceries", groceryRouter);
 app.use("/api/v1/markets", marketRouter);
+app.use("/api/v1/auth", authRouter);
 
 app.listen(PORT, () => console.log(`Running Express Server on port ${PORT}`));
