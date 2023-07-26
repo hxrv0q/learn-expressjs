@@ -7,7 +7,7 @@
     let
       overlays = [
         (final: prev: rec {
-          nodejs = prev.nodejs-18_x;
+          nodejs = prev.nodejs_20;
           pnpm = prev.nodePackages.pnpm;
           yarn = (prev.yarn.override { inherit nodejs; });
           typescript-language-server = prev.nodePackages.typescript-language-server;
